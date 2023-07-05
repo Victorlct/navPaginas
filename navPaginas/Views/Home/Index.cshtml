@@ -1,0 +1,91 @@
+﻿@model navPaginas.ViewModels.TodasTarefasViewModel
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="stylesheet" href="~/css/card.css">
+    <link rel="stylesheet" href="~/css/searchbarIndex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-pzjwQpO9f/M+/X6YcUBUoZc7h6ZzOzdc5Yb+fHqwdGlD/joH6NT9CqCr63uBqLdT" crossorigin="anonymous"></script>
+</head>
+<div class="detail" align="right">
+    <a class="nav-link mx-2" asp-controller="Home" asp-action="Desativadas">
+        <h4>Consultar tarefas desativadas</h4>
+        </a>
+</div>
+<br>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<div class="detail" align="center">
+    <h2>Você possui as seguintes tarefas</h2>
+</div>
+<br>
+<h5 align="center">Pesquisar tarefas</h5>
+<form id ="buscarForm" asp-controller="Home" asp-action="Index">
+    <div class="searchBox">
+        <input class="searchInput" id="queryBusca" type="text" name="queryBusca" placeholder="Digite para pesquisar tarefas" onkeyup="pesquisarTarefas()" />
+        <button class="searchButton" href="#">
+            <i class="material-icons">
+                search
+            </i>
+        </button>
+    </div>
+</form>
+<br><br><br><br>
+<div class="section_our_solution">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="our_solution_category">
+                <div class="solution_cards_box">
+                    @if (Model != null && Model.TodasTarefas != null && Model.TodasTarefas.Any())
+                    {
+                        @foreach (var tarefa in Model.TodasTarefas)
+                        {
+                            <div class="tarefa-card">
+                                <partial name="_tarefaCard" model="tarefa" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <br><br><br>
+                        <p>Não existem tarefas a serem exibidas. Faça login para exibir tarefas existentes ou <a class="nav-link mx-2" asp-controller="Tarefa" asp-action="CriarTarefa">Crie uma nova tarefa</a></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var timeoutId; // Variável de controle para o debounce
+
+    function pesquisarTarefas() {
+        clearTimeout(timeoutId); // Limpa o timeout anterior, se houver um
+
+        // Define um novo timeout para chamar a função depois de 1.5 segundos
+        timeoutId = setTimeout(function () {
+            var query = document.getElementById("queryBusca").value;
+
+            $.ajax({
+                url: "/Home/ListaTarefasParcialAtivas",
+                type: "GET",
+                data: { queryBusca: query },
+                success: function (result) {
+                    $(".solution_cards_box").html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }, 1000);
+    }
+</script>
+
+
+
+
+

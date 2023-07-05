@@ -1,0 +1,19 @@
+﻿@model navPaginas.ViewModels.ConsultaIdViewModel
+@{
+    ViewData["Title"] = "Resultado usuário";
+}
+<link rel="stylesheet" href="~/css/editartarefa.css">
+<h3>USUARIO ENCONTRADO: </h3>
+<br>
+    <div class="row pies-of-the-week">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="card-body">
+                     <h4 class="card-text">Usuário de ID: @Model.LoginID.Id</h4>
+                     <h5 class="card-text">Usuário: @Model.LoginID.Usuario</h5>
+                     <h5 class="card-text">E-mail: @Model.LoginID.Email</h5>
+                     <h5 class="card-text">Senha: @Model.LoginID.Senha</h5>
+                </div>
+            
+        </div>
+    </div>
+<a class="btn btn-secondary" asp-controller="Consultas" asp-action="ListarTodosUsuarios">Voltar</a>

@@ -1,0 +1,28 @@
+﻿.fc-header-toolbar {
+    
+}
+
+tr {
+    background-color: #282828;
+}
+
+td {
+    background-color: white;
+}
+.fc-daygrid-day-frame {
+    background-color: #1a252f;
+    border-radius: 5px;
+}
+
+.fc-scrollgrid {
+    background-color: #000000;
+}
+
+fc-daygrid-day-top {
+    background-color: white;
+}
+
+a, a:hover, a:visited, a:active {
+    color: white;
+    text-decoration: none;
+}

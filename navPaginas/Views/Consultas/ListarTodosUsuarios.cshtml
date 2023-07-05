@@ -1,0 +1,17 @@
+﻿@model navPaginas.ViewModels.ConsultasViewModel
+
+<br><br>
+<div class="text-center">
+    <h1>Todos os usuários</h1>
+    <h5>sem ordenação</h5>
+
+    <div class="row pies-of-the-week">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var user in Model.TodosLogins)
+            {
+                <partial name="_usuarioCard" model="user" />
+            }
+        </div>
+
+    </div>
+</div>

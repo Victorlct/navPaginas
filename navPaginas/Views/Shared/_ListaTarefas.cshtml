@@ -1,0 +1,13 @@
+﻿@model navPaginas.ViewModels.TodasTarefasViewModel
+
+@if (Model != null && Model.TodasTarefas != null && Model.TodasTarefas.Any())
+{
+    foreach (var tarefa in Model.TodasTarefas)
+    {
+        <partial name="_tarefaCard" model="tarefa" />
+    }
+}
+else
+{
+    <p>Não existem tarefas correspondentes à consulta.</p>
+}

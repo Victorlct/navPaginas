@@ -1,0 +1,29 @@
+﻿@using Newtonsoft.Json;
+@{
+    var loginObjectClaim = User.Claims.FirstOrDefault(c => c.Type == "LoginObject");
+    var loginObject = loginObjectClaim != null ? JsonConvert.DeserializeObject<Login>(loginObjectClaim.Value) : null;
+}
+
+<ul class="navbar-nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (loginObject != null)
+        {
+            <li class="nav-item">
+                <a class="nav-link mx-2"><b>Olá, @loginObject.Usuario</b></a>
+            </li>
+        }
+    <li class="nav-item">
+        <a class="nav-link mx-2" asp-controller="Login" asp-action="Logout">Logout</a>
+    </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link mx-2" asp-controller="Login" asp-action="Registro">Registrar-se</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link mx-2" asp-controller="Login" asp-action="Index">Login</a>
+        </li>
+    }
+</ul>

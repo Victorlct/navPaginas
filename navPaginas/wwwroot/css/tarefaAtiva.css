@@ -1,0 +1,31 @@
+﻿.ativa {
+    position: absolute;
+    right: 63px;
+    top: 22px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.desativa {
+    position: absolute;
+    right: 13px;
+    top: 22px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.imgStatus {
+    position: absolute;
+    right: -20px;
+    top: -170px;
+    transform: scale(0.15);
+}
+
+.atrasada {
+    position: absolute;
+    right: 13px;
+    bottom: 22px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff0000;
+}

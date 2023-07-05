@@ -1,0 +1,69 @@
+﻿@model navPaginas.ViewModels.TarefaViewModel
+@using System.ComponentModel.DataAnnotations;
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <title>Custom Bootstrap 4 card</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/tarefacard.css">
+
+<style>
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        font-size: 14px;
+        color: #666666;
+        font-family: "Open Sans";
+    }
+</style>
+
+    <div class="container">
+        <div class="row pt-5 m-auto">
+            <div class="col-md-6 col-lg-4 pb-3">
+                <div class="card card-custom bg-white border-white border-0" style="height: 450px">
+                    <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
+                    <div class="card-body" style="overflow-y: auto">
+                        <h4 class="card-title">@Model.Titulo</h4>
+                        <p class="card-text">@Model.Descricao</p>
+                        <p class="card-text">
+                            Data de Criação: @Model.Criacao
+                        </p>
+                        <p class="card-text">
+                            Data de Conclusão: @Model.Termino
+                        </p>
+                        <p class="card-text">
+                            Data de entrega: @Model.Entrega.ToShortDateString()
+                        </p>
+                        @if (Model.Ativa == true)
+                        {
+                            <p class="card-text">
+                                A tarefa esta ativa.
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                A tarefa esta desativada.
+                            </p>
+                        }
+                    </div>
+                    <div class="card-footer" style="background: inherit; border-color: inherit;">
+
+                        @if(Model.Ativa == true)
+                        {
+                            <a class="btn btn-primary" asp-controller="Tarefa" asp-action="ConcluirTarefa" asp-route-id="@Model.TarefaID">Concluir Tarefa</a>
+                            <br>
+                        }
+                        <a class="btn btn-primary" asp-controller="Tarefa" asp-action="RemoverTarefa" asp-route-id="@Model.TarefaID">Excluir Tarefa</a><br>
+                        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Index">Voltar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

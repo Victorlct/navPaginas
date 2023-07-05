@@ -1,0 +1,48 @@
+﻿@model navPaginas.ViewModels.TarefaViewModel;
+@using Newtonsoft.Json;
+
+    <script src="~/js/calendario/index.global.js"></script>
+    <link rel="stylesheet" href="~/css/calendario.css" asp-append-version="true"/>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+              left: 'prev, today',
+              center: 'title',
+              right: 'next'
+            },
+            eventClick: function (info) {
+                var eventId = info.event.id;
+                window.location.href = '/Tarefa/Details/' + eventId;
+            },
+            initialDate: '2023-06-22',
+            navLinks: false,
+            businessHours: true,
+            editable: true,
+            selectable: true,
+            events: @Html.Raw(Json.Serialize(Model.Eventos))
+            });
+          calendar.setOption('locale', 'br');
+          calendar.render();
+        });
+    </script>
+
+    <style>
+        #calendar {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+    </style>
+    <br><br>
+    <div id='calendar'></div>
+
+<div class="modal fade" id="tarefaModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="tarefaModalBody">
+            </div>
+        </div>
+    </div>
+</div>

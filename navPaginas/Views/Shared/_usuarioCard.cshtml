@@ -1,0 +1,13 @@
+﻿@model Login
+
+<link rel="stylesheet" href="~/css/userCard.css">
+<a asp-controller="Consultas" asp-action="ListarUsuario" asp-route-id="@Model.Id">
+<div class="cards-list">
+    <div class="card 1">
+        <div class="card_image"> </div>
+        <div class="card_title title-white">
+            <h2>@Model.Usuario</h2><br>
+        </div>
+    </div>
+</div>
+</a>

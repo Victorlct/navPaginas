@@ -1,0 +1,70 @@
+﻿@model navPaginas.ViewModels.TarefaViewModel
+
+<link rel="stylesheet" href="~/css/editartarefa.css">
+
+<div class="formbold-main-wrapper">
+  <div class="formbold-form-wrapper">
+
+     <form asp-action="EditarTarefa" method="POST">
+      <div class="formbold-form-title">
+        <h2 class="">Editar tarefa</h2>
+        <p>
+            Edite os campos "Titulo" e "Descrição" da tarefa.
+        </p>
+      </div>
+
+      <div class="formbold-mb-3">
+        <label for="titulo" class="formbold-form-label">
+          Titulo
+        </label>
+        <input asp-for="@Model.Titulo" type="text" id="desc" class="formbold-form-input" value="@Model.Titulo" />
+      </div>
+      <span asp-validation-for="@Model.Titulo" class="text-danger"></span>
+
+            <div class="formbold-mb-3">
+                <label for="desc" class="formbold-form-label">
+                    Descrição
+                </label>
+                <input asp-for="@Model.Descricao" type="text" id="desc" class="formbold-form-input" value="@Model.Descricao" />
+            </div>
+     <span asp-validation-for="@Model.Descricao" class="text-danger"></span>
+
+      <div class="formbold-input-flex">
+        <div>
+          <label for="criacao" class="formbold-form-label"> Data de criação </label>
+          <input
+            type="text"
+            name="criacao"
+            id="criacao"
+            class="formbold-form-input"
+            value="@Model.Criacao"
+            readonly="readonly" />
+        </div>
+                <div>
+                    <label for="termino" class="formbold-form-label"> Data de conclusão </label>
+                    <input type="text"
+                           name="termino"
+                           id="termino"
+                           class="formbold-form-input"
+                           value="@Model.Termino"
+                           readonly="readonly" />
+                </div>
+      </div>
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="entrega" class="formbold-form-label">Data de entrega:</label>
+                    <input asp-for="@Model.Entrega" type="date" id="entrega" class="formbold-form-input" value="@Model.Entrega.ToShortDateString()" placeholder="@Model.Entrega.ToString()" />
+                </div>
+            </div>
+            <span asp-validation-for="@Model.Entrega" class="text-danger"></span>
+      <button type="submit" class="formbold-btn">Alterar dados</button>
+        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Voltar</a>
+    </form>
+  </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    }
+
+
